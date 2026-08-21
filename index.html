@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutPredi - Predicciones de Fútbol</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>FutPredi - Predicciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
-        <h1>FutbolPredictions</h1>
-        <p>Predice. Compite. Demuestra que sabes de fútbol.</p>
+        <div class="header-content">
+            <h1>FutPredi</h1>
+            <p>Predice. Compite. Demuestra cuánto sabes.</p>
+        </div>
     </header>
 
     <main class="container">
-        <h2 class="section-title">🏆 Predicciones de la temporada</h2>
+        <div class="section-header">
+            <h2>🏆 Temporada actual</h2>
+            <p class="subtitle">Desliza para predecir el rendimiento de cada jugador (0 a 10).</p>
+        </div>
         
-        <!-- Aquí se inyectarán las tarjetas de los jugadores desde JS -->
+        <!-- Tarjetas generadas por JS -->
         <div id="players-container"></div>
     </main>
 
-    <!-- Scripts: Importante cargar primero los datos y luego la lógica -->
-    <script src="js/data.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Contenedor para avisos flotantes -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
