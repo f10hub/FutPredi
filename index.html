@@ -3,102 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutPredi - Inicio del Proyecto</title>
-    
-    <!-- Aquí empieza el CSS (Estilos) -->
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        /* Encabezado */
-        header {
-            background-color: #2c3e50;
-            color: #ffffff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-
-        /* Contenedor principal */
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* Botón de prueba */
-        .btn-editar {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn-editar:hover {
-            background-color: #2980b9;
-        }
-
-        /* Pie de página */
-        footer {
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-    </style>
+    <title>FutPredi - Predicciones de Fútbol</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- ENCABEZADO: Aquí puedes poner tu logo o el nombre principal -->
     <header>
-        <h1>FutPredi</h1>
-        <p>El inicio de algo grande</p>
+        <h1>FutbolPredictions</h1>
+        <p>Predice. Compite. Demuestra que sabes de fútbol.</p>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL: Aquí irá la información de tu proyecto -->
-    <main>
-        <h2>¡Bienvenido a tu nueva página web!</h2>
-        <p>Esta es una estructura básica y funcional. Está diseñada para que puedas ir añadiendo secciones, cambiando colores y probando cosas nuevas poco a poco.</p>
+    <main class="container">
+        <h2 class="section-title">🏆 Predicciones de la temporada</h2>
         
-        <ul>
-            <li><strong>HTML:</strong> Es el esqueleto (textos, títulos, listas).</li>
-            <li><strong>CSS:</strong> Es la ropa (colores, márgenes, diseño).</li>
-            <li><strong>JavaScript:</strong> Es el músculo (interactividad).</li>
-        </ul>
-
-        <p>Haz clic en el botón de abajo para probar una pequeña interacción con JavaScript:</p>
-        
-        <button class="btn-editar" onclick="saludar()">Haz clic aquí</button>
-        <p id="mensaje-js" style="margin-top: 15px; font-weight: bold; color: #27ae60;"></p>
+        <!-- Aquí se inyectarán las tarjetas de los jugadores desde JS -->
+        <div id="players-container"></div>
     </main>
 
-    <!-- PIE DE PÁGINA: Derechos de autor, enlaces a redes, etc. -->
-    <footer>
-        <p>&copy; 2026 FutPredi. Todos los derechos reservados.</p>
-    </footer>
-
-    <!-- Aquí empieza el JavaScript (Interactividad) -->
-    <script>
-        // Esta función se ejecuta cuando haces clic en el botón
-        function saludar() {
-            const parrafo = document.getElementById('mensaje-js');
-            parrafo.innerText = "¡Perfecto! El JavaScript funciona. Ya puedes empezar a construir tu proyecto.";
-        }
-    </script>
-
+    <!-- Scripts: Importante cargar primero los datos y luego la lógica -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
