@@ -35,22 +35,30 @@ const friends = [
 
 // --- 2. NAVEGACIÓN SPA ---
 function openView(viewId) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById(viewId).classList.add('active');
+    // 1. Ocultamos todas las vistas asegurándonos de añadir 'hidden' y quitar 'active'
+    document.querySelectorAll('.view').forEach(v => {
+        v.classList.remove('active');
+        v.classList.add('hidden');
+    });
     
+    // 2. Mostramos la vista que hemos clickeado quitando 'hidden' y añadiendo 'active'
+    const targetView = document.getElementById(viewId);
+    targetView.classList.remove('hidden');
+    targetView.classList.add('active');
+    
+    // 3. Gestionamos el botón de volver
     const btnBack = document.getElementById('btn-back');
-    if (viewId === 'view-home') btnBack.classList.add('hidden');
-    else btnBack.classList.remove('hidden');
+    if (viewId === 'view-home') {
+        btnBack.classList.add('hidden');
+    } else {
+        btnBack.classList.remove('hidden');
+    }
 
     // Inicializar datos según la vista
     if (viewId === 'view-match') initMatches();
     if (viewId === 'view-ratings') initRatings();
     if (viewId === 'view-leagues') initLeagues();
     if (viewId === 'view-leaderboard') renderLeaderboard();
-}
-
-function goHome() {
-    openView('view-home');
 }
 
 // --- 3. MODO 1: PARTIDOS ---
