@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutPredi - Predicciones</title>
+    <title>FutPredi - Juegos y Predicciones</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,19 +13,112 @@
             <h1>FutPredi</h1>
             <p>Predice. Compite. Demuestra cuánto sabes.</p>
         </div>
+        <!-- Botón de navegación dinámico -->
+        <button id="btn-back" class="btn btn-secondary hidden" onclick="goHome()">⬅ Volver al Menú</button>
     </header>
 
     <main class="container">
-        <div class="section-header">
-            <h2>🏆 Temporada actual</h2>
-            <p class="subtitle">Desliza para predecir el rendimiento de cada jugador (0 a 10).</p>
-        </div>
         
-        <!-- Tarjetas generadas por JS -->
-        <div id="players-container"></div>
+        <!-- VISTA 0: MENÚ PRINCIPAL -->
+        <div id="view-home" class="view active">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="openView('view-match')">
+                    <div class="icon">⚽</div>
+                    <h3>Partido a Partido</h3>
+                    <p>Predice resultados, goleadores y asistencias.</p>
+                </div>
+                <div class="menu-card" onclick="openView('view-ratings')">
+                    <div class="icon">📊</div>
+                    <h3>Ratings Temporada</h3>
+                    <p>Valora del 0 al 10 a los jugadores por equipo.</p>
+                </div>
+                <div class="menu-card" onclick="openView('view-leagues')">
+                    <div class="icon">🏆</div>
+                    <h3>Los Campeones</h3>
+                    <p>Predice los ganadores de las grandes ligas y UCL.</p>
+                </div>
+                <div class="menu-card" onclick="openView('view-leaderboard')">
+                    <div class="icon">📈</div>
+                    <h3>Clasificación</h3>
+                    <p>Compara tus puntos con tus amigos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 1: PARTIDOS -->
+        <div id="view-match" class="view hidden">
+            <div class="section-header">
+                <h2>⚽ Predicción del Partido</h2>
+                <p class="subtitle">Adivina el resultado exacto y los protagonistas.</p>
+            </div>
+            <div class="card">
+                <select id="match-selector" class="input-modern" onchange="loadMatchData()"></select>
+                
+                <div class="score-board">
+                    <div class="team-col">
+                        <span id="match-home" class="team-name">Local</span>
+                        <input type="number" id="score-home" class="score-input" min="0" oninput="calcDifference()">
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team-col">
+                        <span id="match-away" class="team-name">Visitante</span>
+                        <input type="number" id="score-away" class="score-input" min="0" oninput="calcDifference()">
+                    </div>
+                </div>
+
+                <div class="stats-box">Diferencia de goles: <strong id="goal-diff">-</strong></div>
+
+                <div class="form-group">
+                    <label>Goleadores (Mantén CTRL para seleccionar varios)</label>
+                    <select id="match-scorers" class="input-modern" multiple size="3"></select>
+                </div>
+                <div class="form-group">
+                    <label>Asistentes (Mantén CTRL para seleccionar varios)</label>
+                    <select id="match-assisters" class="input-modern" multiple size="3"></select>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-save" onclick="saveMatch()">💾 Guardar</button>
+                    <button class="btn btn-share" onclick="shareMatch()">↗️ Compartir</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 2: RATINGS -->
+        <div id="view-ratings" class="view hidden">
+            <div class="section-header">
+                <h2>📊 Valoraciones</h2>
+                <select id="team-filter" class="input-modern" onchange="renderPlayers()"></select>
+            </div>
+            <div id="players-container"></div>
+        </div>
+
+        <!-- VISTA 3: LIGAS Y PREMIOS -->
+        <div id="view-leagues" class="view hidden">
+            <div class="section-header">
+                <h2>🏆 Ligas y Premios Mayores</h2>
+                <p class="subtitle">Las predicciones más difíciles de la temporada.</p>
+            </div>
+            <div id="leagues-container"></div>
+            <div class="actions" style="margin-top: 20px;">
+                <button class="btn btn-save" onclick="saveLeagues()">💾 Guardar Predicciones</button>
+            </div>
+        </div>
+
+        <!-- VISTA 4: CLASIFICACIÓN -->
+        <div id="view-leaderboard" class="view hidden">
+            <div class="section-header">
+                <h2>📈 Tabla de Amigos</h2>
+                <p class="subtitle">Los mejores adivinos de la temporada.</p>
+            </div>
+            <div class="card" style="padding: 0;">
+                <div id="leaderboard-container"></div>
+            </div>
+        </div>
+
     </main>
 
-    <!-- Contenedor para avisos flotantes -->
+    <!-- Contenedor de Toasts -->
     <div id="toast-container"></div>
 
     <script src="script.js"></script>
