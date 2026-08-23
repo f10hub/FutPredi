@@ -26,10 +26,10 @@ const competitions = [
 ];
 
 const friends = [
-    { name: "Juan (Tú)", points: 1450 },
-    { name: "Carlos99", points: 1230 },
-    { name: "Marta_Ftbl", points: 1560 },
-    { name: "AlexPro", points: 890 }
+    { name: "lacacipzz", points: 1450 },
+    { name: "Mario", points: 1230 },
+    { name: "Pablo Gómez", points: 1560 },
+    { name: "Teclas", points: 890 }
 ];
 
 
